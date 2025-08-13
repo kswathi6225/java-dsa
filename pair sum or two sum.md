@@ -107,9 +107,39 @@ public class PairSumAllTwoPointer {
     }
 }
 ```
-
+##other method for  two pointer
 ---
+```
+import java.util.Arrays;
 
+public class TwoPointerExample {
+    public static void main(String[] args) {
+        int[] arr = {2, 4, 3, 5, 7, 8, 9};
+        int target = 10;
+
+        Arrays.sort(arr); // Sort the array first
+        int left = 0;
+        int right = arr.length - 1;
+
+        System.out.println("Pairs with sum " + target + ":");
+        while (left < right) {
+            int sum = arr[left] + arr[right];
+
+            if (sum == target) {
+                System.out.println("(" + arr[left] + ", " + arr[right] + ")");
+                left++;
+                right--;
+            } 
+            else if (sum < target) {
+                left++; // Increase sum by moving left pointer right
+            } 
+            else {
+                right--; // Decrease sum by moving right pointer left
+            }
+        }
+    }
+}
+```
 ### Output:
 
 ```
