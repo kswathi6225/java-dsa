@@ -65,6 +65,68 @@ public class PairSumOptimized {
 ```
 
 ---
+## Two-Pointer approach in sorted array that finds **all pairs that sum to the target**  O(n)
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class PairSumAllTwoPointer {
+    public static void main(String[] args) {
+        int[] nums = {2, 4, 5, 7, 11, 15};
+        int target = 9;
+
+        int i = 0;
+        int j = nums.length - 1;
+
+        List<Integer> ans = new ArrayList<>();
+
+        while (i < j) {
+            int pairSum = nums[i] + nums[j];
+
+            if (pairSum < target) {
+                i++;
+            } else if (pairSum > target) {
+                j--;
+            } else {
+                ans.add(i); // store index of first number
+                ans.add(j); // store index of second number
+                i++;
+                j--;
+            }
+        }
+
+        // Print all found pairs
+        for (int k = 0; k < ans.size(); k += 2) {
+            System.out.println(nums[ans.get(k)] + ", " + nums[ans.get(k + 1)]);
+        }
+    }
+}
+```
+
+---
+
+### Output:
+
+```
+2, 7
+4, 5
+```
+
+---
+
+✅ **Explanation:**
+
+* `i` → starts from beginning
+* `j` → starts from end
+* Compare `nums[i] + nums[j]` with `target`
+
+  * `< target` → move `i++` to increase sum
+  * `> target` → move `j--` to decrease sum
+  * `== target` → store indices and move both pointers
+
+This finds **all pairs in a sorted array** efficiently in **O(n)** time.
+---
 
 ### ✅ Summary
 
