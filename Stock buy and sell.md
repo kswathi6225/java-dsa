@@ -5,7 +5,7 @@ Input: prices = [7, 1, 5, 3, 6, 4]
 Output: 5
 
 Explanation: Buy on day 2 (price = 1), sell on day 5 (price = 6) → profit = 6 - 1 = 5
-```
+```java
 public class StockBuySell {
     public static int maxProfit(int[] prices) {
         int maxProfit = 0;
