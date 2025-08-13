@@ -30,26 +30,30 @@ Keep track of the maximum water found.
 **Space Complexity:** `O(1)`
 
 ```java
-public class ContainerBruteForce {
-    static int maxWater(int[] arr) {
-        int n = arr.length;
-        int res = 0;
+public class Main {
+    public static int mswt(int[] height) {
+        int maxwater = 0;
+        int ht, width;
 
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
-                int water = Math.min(arr[i], arr[j]) * (j - i);
-                res = Math.max(res, water);
+        for (int i = 0; i < height.length; i++) {
+            for (int j = i + 1; j < height.length; j++) {
+                ht = Math.min(height[i], height[j]);
+                width = j - i;
+                int area = ht * width;
+                maxwater = Math.max(maxwater, area);
             }
         }
 
-        return res;
+        return maxwater;
     }
 
     public static void main(String[] args) {
-        int[] arr = {2, 1, 8, 6, 4, 6, 5, 5};
-        System.out.println("Max Water (Brute Force): " + maxWater(arr)); // Output: 25
+        int[] height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+        int maxwater = mswt(height);
+        System.out.println("Max water : " + maxwater);
     }
 }
+
 ```
 
 ---
@@ -66,30 +70,34 @@ public class ContainerBruteForce {
 **Space Complexity:** `O(1)`
 
 ```java
-public class ContainerTwoPointer {
-    static int maxWater(int[] arr) {
-        int left = 0, right = arr.length - 1;
-        int res = 0;
+public class Main {
+    public static int mswt(int[] height) {
+        int n = height.length;
+        int lp = 0;          // left pointer
+        int rp = n - 1;      // right pointer
+        int maxwater = 0;
 
-        while (left < right) {
-            int water = Math.min(arr[left], arr[right]) * (right - left);
-            res = Math.max(res, water);
+        while (lp < rp) {
+            int w = rp - lp;
+            int ht = Math.min(height[lp], height[rp]);
+            int curwater = w * ht;
+            maxwater = Math.max(maxwater, curwater);
 
-            if (arr[left] < arr[right]) {
-                left++;
-            } else {
-                right--;
-            }
+            if (height[lp] < height[rp])
+                lp++;
+            else
+                rp--;
         }
 
-        return res;
+        return maxwater;  // ✅ return result
     }
-
     public static void main(String[] args) {
-        int[] arr = {2, 1, 8, 6, 4, 6, 5, 5};
-        System.out.println("Max Water (Two Pointers): " + maxWater(arr)); // Output: 25
+        int[] height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+        int maxwater = mswt(height);
+        System.out.println("Max water : " + maxwater);
     }
 }
+
 ```
 
 ---
