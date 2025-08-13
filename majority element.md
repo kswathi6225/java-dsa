@@ -79,7 +79,42 @@ public class MajorityElementHashMap {
 **Space Complexity:** O(n)
 
 ---
+## [Better Approach - 1] Using Sorting - O(nlog(n)) Time and O(1) Space
 
+```
+import java.util.Arrays;
+
+class GfG {
+
+    static int majorityElement(int[] arr) {
+
+        int n = arr.length;
+        Arrays.sort(arr);
+        
+        // Potential majority element
+        int candidate = arr[n/2];  
+        
+        // Count how many times candidate appears
+        int count = 0;
+        for (int num : arr) {
+            if (num == candidate) {
+                count++;
+            }
+        }
+    
+        if (count > n/2) {
+            return candidate;
+        }
+        // No majority element
+        return -1;  
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 1, 2, 1, 3, 5, 1};
+        System.out.println(majorityElement(arr));
+    }
+}
+```
 ## **Approach 3 – Boyer-Moore Voting Algorithm (O(n) time, O(1) space)** ✅ **Most Optimal**
 
 This is the best way to solve it when the majority element is guaranteed to exist.
