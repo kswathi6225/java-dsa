@@ -33,7 +33,7 @@ Pair indices: [0, 1]
 
 ---
 
-## 2. Optimized Approach using HashMap (O(n))
+## 2. Optimized Approach using HashMap (O(n))  if array is unsorted
 
 * Use a `HashMap` to store numbers and their indices for quick lookup.
 
@@ -65,7 +65,7 @@ public class PairSumOptimized {
 ```
 
 ---
-## Two-Pointer approach in sorted array that finds **all pairs that sum to the target**  O(n)
+##if array is sorted-- Two-Pointer approach in sorted array that finds **all pairs that sum to the target**  O(n)
 
 ```java
 import java.util.ArrayList;
