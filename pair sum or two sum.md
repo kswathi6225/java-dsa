@@ -50,7 +50,7 @@ public class PairSumOptimized {
             if (map.containsKey(complement)) {
                 return new int[]{map.get(complement), i}; // Found the pair
             }
-            map.put(nums[i], i);
+            map.put(nums[i], i); // adds value to the hash map
         }
         return new int[]{-1, -1}; // No pair found
     }
