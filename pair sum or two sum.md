@@ -65,6 +65,9 @@ public class PairSumOptimized {
 }
 ```
 
+Time Complexity: O(n) → We scan the array once, and HashMap lookups are O(1) on average.
+
+Space Complexity: O(n) → We store at most n elements in the HashMap.
 ---
 ## 3.if array is sorted-- Two-Pointer approach in sorted array that finds **all pairs that sum to the target**  O(n)
 
