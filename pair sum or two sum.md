@@ -65,7 +65,7 @@ public class PairSumOptimized {
 ```
 
 ---
-##if array is sorted-- Two-Pointer approach in sorted array that finds **all pairs that sum to the target**  O(n)
+## if array is sorted-- Two-Pointer approach in sorted array that finds **all pairs that sum to the target**  O(n)
 
 ```java
 import java.util.ArrayList;
