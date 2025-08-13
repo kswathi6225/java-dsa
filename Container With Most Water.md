@@ -1,12 +1,24 @@
 
 # 🪣 Container With Most Water – Java Solutions
 
-## Problem Statement
+### 🧠 **Problem Statement (Leetcode 11):**
 
-Given an array `arr[]` of non-negative integers, where each element `arr[i]` represents the height of the vertical lines,
-find the **maximum amount of water** that can be contained between any two lines along with the x-axis.
+Given `n` non-negative integers `height[0], height[1], ..., height[n-1]`, where each value represents the height of a vertical line on the x-axis at index `i`,
+Find two lines that together with the x-axis form a container, such that the container holds the **most water**.
 
 ---
+
+### 📥 Example Input:
+
+```cpp
+height = [1,8,6,2,5,4,8,3,7]
+```
+
+### 📤 Output:
+
+```
+49
+```
 
 ## **Approach 1 – Naive (Brute Force)**
 
