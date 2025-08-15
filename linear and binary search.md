@@ -69,6 +69,60 @@ public class BinarySearchExample {
     }
 }
 ```
+
+## **Binary Search in Java using Recursion**:
+
+```java
+public class BinarySearchRecursion {
+
+    // Recursive method
+    public static int binarySearch(int[] arr, int left, int right, int target) {
+        if (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            // Check if the target is at mid
+            if (arr[mid] == target) {
+                return mid;
+            }
+
+            // If target is smaller, search the left half
+            if (target < arr[mid]) {
+                return binarySearch(arr, left, mid - 1, target);
+            }
+
+            // Else search the right half
+            return binarySearch(arr, mid + 1, right, target);
+        }
+
+        // Element not found
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {2, 4, 6, 8, 10, 12, 14};
+        int target = 10;
+
+        int result = binarySearch(arr, 0, arr.length - 1, target);
+
+        if (result != -1) {
+            System.out.println("Element found at index: " + result);
+        } else {
+            System.out.println("Element not found");
+        }
+    }
+}
+```
+
+**How it works:**
+
+1. **Base condition** → If `left > right`, search stops (element not found).
+2. Calculate `mid`.
+3. If element at `mid` is the target → return index.
+4. If target < `mid` → search **left half**.
+5. Else → search **right half**.
+
+If you want, I can give you **Linear Search + Binary Search (Iterative + Recursive)** all in one Java file so you can revise quickly.
+
 ## ✅ Method 2: Binary Search (Optimized Mid Calculation)
 
 ### 🔹 Description:
