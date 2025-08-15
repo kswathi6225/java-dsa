@@ -52,20 +52,23 @@ public class MajorityElementBrute {
 ```java
 import java.util.*;
 
-public class MajorityElementHashMap {
+public class Main {
     public static void main(String[] args) {
         int[] nums = {3, 3, 4, 2, 3, 3, 5};
         Map<Integer, Integer> map = new HashMap<>();
         int n = nums.length;
 
+        // Count frequency of each number
         for (int num : nums) {
             map.put(num, map.getOrDefault(num, 0) + 1);
         }
 
         int majority = -1;
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            if (entry.getValue() > n / 2) {
-                majority = entry.getKey();
+
+        // Check if any number appears more than n/2 times
+        for (int num : map.keySet()) {
+            if (map.get(num) > n / 2) {
+                majority = num;
                 break;
             }
         }
@@ -73,6 +76,7 @@ public class MajorityElementHashMap {
         System.out.println("Majority Element: " + majority);
     }
 }
+
 ```
 
 **Time Complexity:** O(n)
