@@ -18,28 +18,29 @@ A **mountain array** is defined as:
 ### 🏔️ **Java Code – Find Peak Index in a Mountain Array**
 
 ```java
-public class MountainArrayPeak {
-    public static int peakIndex(int[] arr) {
-        int start = 0, end = arr.length - 1;
-
-        while (start < end) { // ensures mid+1 is always valid
-            int mid = start + (end - start) / 2;
-
-            if (arr[mid] < arr[mid + 1]) {
-                // Increasing part → move right
-                start = mid + 1;
-            } else {
-                // Decreasing part → peak is at mid or to the left
-                end = mid;
+import java.util.*;
+public class Main{
+    public static int peak(int[] arr){
+        int st=1;
+        int end=arr.length-1;
+        while(st<end){
+            int mid=st+(end-st)/2;
+            if(arr[mid-1]<arr[mid] && arr[mid]>arr[mid+1]){
+                return mid;
+            }
+            else if(arr[mid-1]<arr[mid]){
+                st=mid+1;
+            }
+            else{
+                end=mid-1;
             }
         }
-        // start == end → peak index
-        return start;
+        return -1;
     }
-
-    public static void main(String[] args) {
-        int[] arr = {0, 3, 8, 9, 5, 2};
-        System.out.println("Peak index: " + peakIndex(arr));
+    public static void main(String args[]){
+        int[] el={0, 3, 8, 9, 5, 2};
+        int element=peak(el);
+        System.out.println(element);
     }
 }
 ```
