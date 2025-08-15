@@ -85,7 +85,7 @@ public class Main {
 ---
 ## [Better Approach - 1] Using Sorting - O(nlog(n)) Time and O(1) Space
 
-```
+```java
 import java.util.Arrays;
 
 class GfG {
