@@ -1,3 +1,143 @@
+## 🔹 **Common StringBuilder Methods**
+
+### 1. **append()**
+
+Adds text at the end.
+
+```java
+StringBuilder sb = new StringBuilder("Hello");
+sb.append(" World");
+System.out.println(sb); // Hello World
+```
+
+---
+
+### 2. **insert(int offset, String str)**
+
+Inserts text at a given index.
+
+```java
+StringBuilder sb = new StringBuilder("HelloWorld");
+sb.insert(5, " Java");
+System.out.println(sb); // Hello JavaWorld
+```
+
+---
+
+### 3. **delete(int start, int end)**
+
+Deletes characters from `start` to `end-1`.
+
+```java
+StringBuilder sb = new StringBuilder("HelloWorld");
+sb.delete(5, 7); 
+System.out.println(sb); // Hellorld
+```
+
+---
+
+### 4. **deleteCharAt(int index)**
+
+Deletes a single character.
+
+```java
+StringBuilder sb = new StringBuilder("Hello");
+sb.deleteCharAt(1); 
+System.out.println(sb); // Hllo
+```
+
+---
+
+### 5. **replace(int start, int end, String str)**
+
+Replaces characters from `start` to `end-1` with new text.
+
+```java
+StringBuilder sb = new StringBuilder("HelloWorld");
+sb.replace(5, 10, "Java");
+System.out.println(sb); // HelloJava
+```
+
+---
+
+### 6. **reverse()**
+
+Reverses the whole string.
+
+```java
+StringBuilder sb = new StringBuilder("Hello");
+sb.reverse();
+System.out.println(sb); // olleH
+```
+
+---
+
+### 7. **capacity()**
+
+Shows current buffer capacity (not length).
+
+```java
+StringBuilder sb = new StringBuilder("Hello");
+System.out.println(sb.capacity()); // default 16 + length of string
+```
+
+---
+
+### 8. **ensureCapacity(int minCapacity)**
+
+Ensures minimum buffer size.
+
+```java
+StringBuilder sb = new StringBuilder();
+sb.ensureCapacity(50); 
+System.out.println(sb.capacity()); // >= 50
+```
+
+---
+
+### 9. **charAt(int index)**
+
+Returns a character at given position.
+
+```java
+StringBuilder sb = new StringBuilder("Hello");
+System.out.println(sb.charAt(1)); // e
+```
+
+---
+
+### 10. **setCharAt(int index, char ch)**
+
+Replaces a single character.
+
+```java
+StringBuilder sb = new StringBuilder("Hello");
+sb.setCharAt(1, 'a');
+System.out.println(sb); // Hallo
+```
+
+---
+
+### 11. **length()**
+
+Returns number of characters.
+
+```java
+StringBuilder sb = new StringBuilder("Hello");
+System.out.println(sb.length()); // 5
+```
+
+---
+
+### 12. **substring(int start) / substring(int start, int end)**
+
+Extracts part of the string.
+
+```java
+StringBuilder sb = new StringBuilder("HelloWorld");
+System.out.println(sb.substring(5));     // World
+System.out.println(sb.substring(0, 5));  // Hello
+```
 
 
 ## **1. List Interface (e.g., `ArrayList`, `LinkedList`)**
