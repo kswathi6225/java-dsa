@@ -8,6 +8,12 @@ System.out.println("Length: " + str.length());
 ```java
 str = str.toLowerCase();
 ```
+## concatenation
+```java
+String name = "Sachin";
+name = name.concat(" Tendulkar");
+System.out.println(name);
+```
 ```java
 import java.util.*;
 public class Main
@@ -39,4 +45,50 @@ l
 d
 
 ```
+
+### ✅ Using `Arrays.toString()` (Simple way)
+
+```java
+import java.util.Arrays;
+
+class Main {
+    public static void main(String[] args) {
+        int[] arr = {71, 70, 71};
+
+        // Prints array in readable form
+        System.out.println(Arrays.toString(arr));  
+    }
+}
+```
+
+👉 Output:
+
+```
+[71, 70, 71]
+```
+
+---
+
+### ✅ If you specifically want curly braces `{ }`
+
+```java
+import java.util.Arrays;
+
+class Main {
+    public static void main(String[] args) {
+        int[] arr = {71, 70, 71};
+
+        // Convert to string and replace square brackets with curly braces
+        String result = Arrays.toString(arr).replace('[', '{').replace(']', '}');
+        System.out.println(result);
+    }
+}
+```
+
+👉 Output:
+
+```
+{71, 70, 71}
+```
+
 
