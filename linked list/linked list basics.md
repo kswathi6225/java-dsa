@@ -37,7 +37,7 @@ public class LinkedListDemo {
 }
 ```
 ## Sample Output
-```
+```java
 After Adding: [Mango, Apple, Banana, Grapes]
 First: Mango
 Last: Grapes
