@@ -91,6 +91,9 @@ Length of the list: 3
 | addLast()  | O(n) per call   |
 | length()   | O(n)            |
 | printAll() | O(n)            |
+| Operation | Time Complexity | Space Complexity |
+| --------- | --------------- | ---------------- |
+| search()  | O(n)            | O(1)             |
 
 ### **Space Complexity**
 
