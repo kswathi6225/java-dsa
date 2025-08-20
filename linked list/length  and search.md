@@ -35,6 +35,15 @@ public class Main {
             return count;
         }
 
+        public boolean search(int key) {
+            Node temp = head;
+            while (temp != null) {
+                if (temp.data == key) return true;
+                temp = temp.next;
+            }
+            return false;
+        }
+
         // Print linked list
         public void printAll() {
             Node temp = head;
@@ -54,6 +63,10 @@ public class Main {
 
         System.out.print("Linked List: ");
         ll.printAll();
+
+        int key2 = 5;
+
+        System.out.println("Searching for " + key1 + ": " + ll.search(key1));
 
         System.out.println("Length of the list: " + ll.length());
     }
