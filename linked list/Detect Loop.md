@@ -121,6 +121,38 @@ public class DetectLoopFloyd {
 **Space Complexity:** O(1) ✅ (no extra space)
 
 ---
+Perfect! Here’s a clear **diagram explanation of Floyd’s Cycle Detection / Tortoise & Hare**:
+
+---
+
+### **Linked List with a Cycle**
+
+```
+1 -> 2 -> 3 -> 4 -> 5
+          ^         |
+          |_________|
+```
+
+* Node `5` points back to `3`, forming a **cycle**.
+
+---
+
+### **Pointer Movement**
+
+| Step | Slow (Tortoise) | Fast (Hare) |                                  |
+| ---- | --------------- | ----------- | -------------------------------- |
+| 0    | 1               | 1           |                                  |
+| 1    | 2               | 3           |                                  |
+| 2    | 3               | 5           |                                  |
+| 3    | 4               | 4           | ← **meet point, cycle detected** |
+
+* **Slow moves 1 step** at a time.
+* **Fast moves 2 steps** at a time.
+* When they **meet**, a cycle exists.
+
+---
+
+
 
 ### **Summary**
 
