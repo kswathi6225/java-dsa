@@ -93,3 +93,11 @@ Output:
 Sum: 7 0 8 
 */
 ```
+
+| Operation                       | Time Complexity | Space Complexity |
+| ------------------------------- | --------------- | ---------------- |
+| Create linked lists from arrays | O(n1 + n2)      | O(n1 + n2)       |
+| Add two lists                   | O(max(n1, n2))  | O(max(n1, n2))   |
+| Print result list               | O(max(n1, n2))  | O(1)             |
+| **Overall**                     | O(n1 + n2)      | O(n1 + n2)       |
+
