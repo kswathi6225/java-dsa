@@ -1,4 +1,4 @@
-````markdown
+
 # Reverse Linked List in Java
 
 ## **Code**
