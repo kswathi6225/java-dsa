@@ -5,7 +5,7 @@ Perfect 👍 Let’s write Java code to **find duplicates in an array**.
 ### ✅ Method 1: Using `HashSet`
 
 This is the most common and efficient way.
-
+#### seen is inbuilt function in hashset
 ```java
 import java.util.*;
 
