@@ -9,8 +9,10 @@ public class StackProblem1 {
         }
 
         int temp = s.pop();
+        System.out.println("Popped " + temp + " from stack"); // Added line
         pushAtBottom(s, data);
         s.push(temp);
+        System.out.println("Pushed " + temp + " back to stack"); // Added line
     }
 
     public static void main(String args[]) {
