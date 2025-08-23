@@ -170,6 +170,10 @@ public class Main {
         System.out.println("Front: " + q.peek());  // front element
         System.out.println("Removed: " + q.remove()); // dequeue
         System.out.println("Front after dequeue: " + q.peek());
+        // Poll (alternative to remove but doesn’t throw exception when empty)
+        System.out.println("Removed using poll: " + q.poll());
+        // Clear queue
+        q.clear();
     }
 }
 ```
