@@ -45,3 +45,13 @@ After Updating: [Mango, Strawberry, Banana, Grapes]
 After Removing: [Strawberry]
 Iterating: Strawberry 
 ```
+| Operation       | Time Complexity | Space Complexity |
+| --------------- | --------------- | ---------------- |
+| Insertion (Beg) | O(1)            | O(1)             |
+| Insertion (End) | O(n)            | O(1)             |
+| Insertion (Pos) | O(n)            | O(1)             |
+| Deletion (Beg)  | O(1)            | O(1)             |
+| Deletion (End)  | O(n)            | O(1)             |
+| Deletion (Pos)  | O(n)            | O(1)             |
+| Search          | O(n)            | O(1)             |
+| Traversal       | O(n)            | O(1)             |
