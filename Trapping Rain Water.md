@@ -51,54 +51,39 @@ Trapped Water = 6
 #### Approach 2: Two Pointer Method (O(n) time, O(1) space)
 
 ```java
-import java.util.*;
+public class TrappingRainWaterOptimized {
+    public static void main(String[] args) {
+        int[] height = {0,1,0,2,1,0,1,3,2,1,2,1};
+        System.out.println("Trapped Water = " + trap(height));
+    }
 
-class GfG {
-    static int maxWater(int[] arr) {
-        int left = 1;
-        int right = arr.length - 2;
+    public static int trap(int[] height) {
+        int left = 0, right = height.length - 1;
+        int leftMax = 0, rightMax = 0;
+        int water = 0;
 
-        // lMax : Maximum in subarray arr[0..left-1]
-        // rMax : Maximum in subarray arr[right+1..n-1]
-        int lMax = arr[left - 1];
-        int rMax = arr[right + 1];
-
-        int res = 0;
-        while (left <= right) {
-          
-            // If rMax is smaller, then we can decide
-            // the amount of water for arr[right]
-            if (rMax <= lMax) {
-              
-                // Add the water for arr[right]
-                res += Math.max(0, rMax - arr[right]);
-
-                // Update right max
-                rMax = Math.max(rMax, arr[right]);
-
-                // Update right pointer as we have decided the amount of water for this
-                right -= 1;
-            } else { 
-              
-                // Add the water for arr[left]
-                res += Math.max(0, lMax - arr[left]);
-
-                // Update left max
-                lMax = Math.max(lMax, arr[left]);
-
-                // Update left pointer as we have
-                // decided water for this
-                left += 1;
+        while (left < right) {
+            if (height[left] < height[right]) {
+                if (height[left] >= leftMax) {
+                    leftMax = height[left];
+                } else {
+                    water += leftMax - height[left];
+                }
+                left++;
+            } else {
+                if (height[right] >= rightMax) {
+                    rightMax = height[right];
+                } else {
+                    water += rightMax - height[right];
+                }
+                right--;
             }
         }
-        return res;
-    }
 
-    public static void main(String[] args) {
-        int[] arr = {2, 1, 5, 3, 1, 0, 4};
-        System.out.println(maxWater(arr));
+        return water;
     }
 }
+
 ```
 
 ✅ Same output:
