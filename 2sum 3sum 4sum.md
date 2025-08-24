@@ -142,61 +142,53 @@ public class ThreeSumBrute {
 ```java
 import java.util.*;
 
-public class ThreeSumSequential {
-    public static void main(String[] args) {
-        // Step 1: Input array
-        int[] arr = {-1, 0, 1, 2, -1, -4};
-        
-        // Step 2: Sort the array
-        Arrays.sort(arr); // arr = [-4, -1, -1, 0, 1, 2]
+public class Main {
+    public static List<List<Integer>> triplet(int n, int[] arr) {
+        List<List<Integer>> ans = new ArrayList<>();
+        Arrays.sort(arr);
 
-        // Step 3: List to store all unique triplets
-        List<List<Integer>> result = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            //remove duplicates:
+            if (i != 0 && arr[i] == arr[i - 1]) continue;
 
-        // Step 4: Iterate through each element as the first element of triplet
-        for (int i = 0; i < arr.length - 2; i++) {
-            // Step 4a: Skip duplicates for the first element
-            if (i > 0 && arr[i] == arr[i - 1]) {
-                continue;
-            }
-
-            // Step 4b: Initialize two pointers
-            int left = i + 1;
-            int right = arr.length - 1;
-
-            // Step 5: Two-pointer approach to find the other two elements
-            while (left < right) {
-                int sum = arr[i] + arr[left] + arr[right];
-
-                if (sum == 0) {
-                    // Step 5a: Found a valid triplet
-                    result.add(Arrays.asList(arr[i], arr[left], arr[right]));
-
-                    // Step 5b: Move pointers inward
-                    left++;
-                    right--;
-
-                    // Step 5c: Skip duplicates for left pointer
-                    while (left < right && arr[left] == arr[left - 1]) left++;
-
-                    // Step 5d: Skip duplicates for right pointer
-                    while (left < right && arr[right] == arr[right + 1]) right--;
-
-                } else if (sum < 0) {
-                    // Step 5e: Sum too small, move left pointer right
-                    left++;
+            //moving 2 pointers:
+            int j = i + 1;
+            int k = n - 1;
+            while (j < k) {
+                int sum = arr[i] + arr[j] + arr[k];
+                if (sum < 0) {
+                    j++;
+                } else if (sum > 0) {
+                    k--;
                 } else {
-                    // Step 5f: Sum too big, move right pointer left
-                    right--;
+                    List<Integer> temp = Arrays.asList(arr[i], arr[j], arr[k]);
+                    ans.add(temp);
+                    j++;
+                    k--;
+                    //skip the duplicates:
+                    while (j < k && arr[j] == arr[j - 1]) j++;
+                    while (j < k && arr[k] == arr[k + 1]) k--;
                 }
             }
         }
 
-        // Step 6: Print all unique triplets
-        System.out.println(result);
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = { -1, 0, 1, 2, -1, -4};
+        int n = arr.length;
+        List<List<Integer>> ans = triplet(n, arr);
+        for (List<Integer> it : ans) {
+            System.out.print("[");
+            for (Integer i : it) {
+                System.out.print(i + " ");
+            }
+            System.out.print("] ");
+        }
+        System.out.println();
     }
 }
-
 ```
 
 ✅ **Time Complexity:** `O(n^2)`
