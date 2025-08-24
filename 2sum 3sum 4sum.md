@@ -142,38 +142,61 @@ public class ThreeSumBrute {
 ```java
 import java.util.*;
 
-public class ThreeSumTwoPointer {
+public class ThreeSumSequential {
     public static void main(String[] args) {
+        // Step 1: Input array
         int[] arr = {-1, 0, 1, 2, -1, -4};
-        Arrays.sort(arr);
+        
+        // Step 2: Sort the array
+        Arrays.sort(arr); // arr = [-4, -1, -1, 0, 1, 2]
 
+        // Step 3: List to store all unique triplets
         List<List<Integer>> result = new ArrayList<>();
 
+        // Step 4: Iterate through each element as the first element of triplet
         for (int i = 0; i < arr.length - 2; i++) {
-            if (i > 0 && arr[i] == arr[i-1]) continue; // avoid duplicates
+            // Step 4a: Skip duplicates for the first element
+            if (i > 0 && arr[i] == arr[i - 1]) {
+                continue;
+            }
 
-            int left = i+1, right = arr.length - 1;
+            // Step 4b: Initialize two pointers
+            int left = i + 1;
+            int right = arr.length - 1;
 
+            // Step 5: Two-pointer approach to find the other two elements
             while (left < right) {
                 int sum = arr[i] + arr[left] + arr[right];
 
                 if (sum == 0) {
+                    // Step 5a: Found a valid triplet
                     result.add(Arrays.asList(arr[i], arr[left], arr[right]));
+
+                    // Step 5b: Move pointers inward
                     left++;
                     right--;
-                    while (left < right && arr[left] == arr[left-1]) left++;
-                    while (left < right && arr[right] == arr[right+1]) right--;
+
+                    // Step 5c: Skip duplicates for left pointer
+                    while (left < right && arr[left] == arr[left - 1]) left++;
+
+                    // Step 5d: Skip duplicates for right pointer
+                    while (left < right && arr[right] == arr[right + 1]) right--;
+
                 } else if (sum < 0) {
+                    // Step 5e: Sum too small, move left pointer right
                     left++;
                 } else {
+                    // Step 5f: Sum too big, move right pointer left
                     right--;
                 }
             }
         }
 
+        // Step 6: Print all unique triplets
         System.out.println(result);
     }
 }
+
 ```
 
 ✅ **Time Complexity:** `O(n^2)`
