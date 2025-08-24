@@ -78,6 +78,62 @@ public class RemoveDuplicatesHashSet {
 
 * If order doesn’t matter → use **HashSet**.
 * If order must be preserved → use **LinkedHashSet**.
+Got it 👍 You can remove duplicates from an array in **Java** using a `LinkedHashSet`.
+Why `LinkedHashSet`?
+
+* **HashSet** removes duplicates but does not preserve order.
+* **LinkedHashSet** removes duplicates **and preserves insertion order**.
+
+Here’s the code ⬇️
+
+```java
+import java.util.*;
+
+public class RemoveDuplicates {
+    public static void main(String[] args) {
+        int[] arr = {4, 5, 9, 4, 9, 7, 5, 2};
+
+        // Step 1: Use LinkedHashSet to remove duplicates
+        LinkedHashSet<Integer> set = new LinkedHashSet<>();
+        for (int num : arr) {
+            set.add(num); // duplicates will be ignored automatically
+        }
+
+        // Step 2: Convert back to array (optional)
+        int[] uniqueArr = new int[set.size()];
+        int i = 0;
+        for (int num : set) {
+            uniqueArr[i++] = num;
+        }
+
+        // Step 3: Print result
+        System.out.println("Array after removing duplicates: " + Arrays.toString(uniqueArr));
+    }
+}
+```
+
+### ✅ Output:
+
+```
+Array after removing duplicates: [4, 5, 9, 7, 2]
+```
+
+---
+
+### ⏱ Time Complexity:
+
+* Inserting into `LinkedHashSet`: **O(n)** on average (since hashing is O(1) per insert).
+* Copying back to array: **O(n)**.
+  👉 Overall: **O(n)**
+
+### 🗂 Space Complexity:
+
+* Uses `LinkedHashSet` to store unique elements → **O(n)** in worst case (if all elements are unique).
+
+---
+
+Do you also want me to show the **brute force method (nested loops)** for removing duplicates in an array (without extra space)?
+
 * If array must remain sorted → first sort, then remove duplicates in place.
 
 ---
