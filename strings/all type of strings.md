@@ -158,65 +158,7 @@ public class RemoveSpacesManual {
 
 ---
 
-## 5️⃣ Check if Two Strings are Anagrams
 
-### Using Inbuilt (`Arrays.sort`)
-
-```java
-import java.util.Arrays;
-
-public class AnagramInbuilt {
-    public static void main(String[] args) {
-        String s1 = "listen";
-        String s2 = "silent";
-
-        char[] a1 = s1.toCharArray();
-        char[] a2 = s2.toCharArray();
-        Arrays.sort(a1);
-        Arrays.sort(a2);
-
-        if (Arrays.equals(a1, a2)) {
-            System.out.println("Anagram");
-        } else {
-            System.out.println("Not Anagram");
-        }
-    }
-}
-```
-
-### Without Inbuilt (Frequency count)
-
-```java
-public class AnagramManual {
-    public static void main(String[] args) {
-        String s1 = "listen";
-        String s2 = "silent";
-
-        if (s1.length() != s2.length()) {
-            System.out.println("Not Anagram");
-            return;
-        }
-
-        int[] freq = new int[26];
-        for (char c : s1.toCharArray()) {
-            freq[c - 'a']++;
-        }
-        for (char c : s2.toCharArray()) {
-            freq[c - 'a']--;
-        }
-
-        for (int i : freq) {
-            if (i != 0) {
-                System.out.println("Not Anagram");
-                return;
-            }
-        }
-        System.out.println("Anagram");
-    }
-}
-```
-
----
 
 ## 6️⃣ Find All Permutations of a String
 
@@ -334,35 +276,7 @@ public class Main {
 
 ---
 
-## 3️⃣ Convert Roman to Integer
 
-```java
-// HashMap Approach
-import java.util.*;
-public class Main {
-    public static int romanToInt(String s) {
-        Map<Character,Integer> map = new HashMap<>();
-        map.put('I',1); map.put('V',5); map.put('X',10);
-        map.put('L',50); map.put('C',100);
-        map.put('D',500); map.put('M',1000);
-        
-        int result = 0;
-        for (int i = 0; i < s.length(); i++) {
-            int value = map.get(s.charAt(i));
-            if (i+1 < s.length() && value < map.get(s.charAt(i+1)))
-                result -= value;
-            else
-                result += value;
-        }
-        return result;
-    }
-    public static void main(String[] args) {
-        System.out.println(romanToInt("MCMXCIV")); // 1994
-    }
-}
-```
-
----
 
 ## 4️⃣ Valid Parentheses
 
