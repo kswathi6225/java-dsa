@@ -115,34 +115,42 @@ print(totalFruit([1,2,1]))  # Output: 3
 ### Code (Optimal - Java)
 
 ```java
+// Sliding Window: O(n)
 import java.util.*;
 
-public class FruitIntoBaskets {
+public class FruitIntoBasket {
     public static int totalFruit(int[] fruits) {
-        Map<Integer, Integer> count = new HashMap<>();
-        int left = 0, maxLen = 0;
+        int left = 0, right = 0;
+        int maxLen = 0;
+        Map<Integer, Integer> map = new HashMap<>(); // fruit -> count
 
-        for (int right = 0; right < fruits.length; right++) {
-            count.put(fruits[right], count.getOrDefault(fruits[right], 0) + 1);
+        while (right < fruits.length) {
+            // include current fruit
+            map.put(fruits[right], map.getOrDefault(fruits[right], 0) + 1);
 
-            while (count.size() > 2) {
-                count.put(fruits[left], count.get(fruits[left]) - 1);
-                if (count.get(fruits[left]) == 0) {
-                    count.remove(fruits[left]);
+            // if more than 2 types, shrink window
+            while (map.size() > 2) {
+                map.put(fruits[left], map.get(fruits[left]) - 1);
+                if (map.get(fruits[left]) == 0) {
+                    map.remove(fruits[left]);
                 }
                 left++;
             }
+
+            // update max window length
             maxLen = Math.max(maxLen, right - left + 1);
+
+            right++;
         }
         return maxLen;
     }
 
     public static void main(String[] args) {
-        System.out.println(totalFruit(new int[]{1,2,1}));      // 3
-        System.out.println(totalFruit(new int[]{0,1,2,2}));    // 3
-        System.out.println(totalFruit(new int[]{1,2,3,2,2}));  // 4
+        int[] fruits = {1, 2, 1, 2, 3};
+        System.out.println("Max Fruits Collected = " + totalFruit(fruits));
     }
 }
+
 ```
 
 ---
