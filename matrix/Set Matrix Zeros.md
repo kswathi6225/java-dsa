@@ -42,15 +42,6 @@ Output:
 ```java
 import java.util.*;
 class Main{
-    public static void main(String[] args){
-        int[][] matrix = {
-            {1, 1, 1},
-            {1, 0, 1},
-            {1, 1, 1}
-        };
-        
-    }
-    
     public static void setzeroes(int[][] matrix){
         int m = matrix.length ,n=matrix[0].length;
         for(int i = ;i<m;i++){
