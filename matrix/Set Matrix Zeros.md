@@ -70,6 +70,28 @@ class Main{
             }
         }
     }
+
+    public static void printMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            System.out.println(Arrays.toString(row));
+        }
+    }
+
+    public static void main(String[] args) {
+        int[][] matrix = {
+            {1, 1, 1},
+            {1, 0, 1},
+            {1, 1, 1}
+        };
+
+        System.out.println("Original matrix:");
+        printMatrix(matrix);
+
+        setZeroes(matrix);
+
+        System.out.println("\nMatrix after setZeroes:");
+        printMatrix(matrix);
+    }
     
 }
 ```
