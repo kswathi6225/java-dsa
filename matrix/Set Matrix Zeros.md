@@ -40,33 +40,37 @@ Output:
 * Use a placeholder like `-1` or any sentinel to mark cells to be zeroed later.
 
 ```java
-public class SetMatrixZeroes {
-    public static void setZeroes(int[][] matrix) {
-        int m = matrix.length, n = matrix[0].length;
-
-        // Step 1: mark cells to be zeroed as -1
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (matrix[i][j] == 0) {
-                    // mark row
-                    for (int k = 0; k < n; k++) {
-                        if (matrix[i][k] != 0) matrix[i][k] = -1;
-                    }
-                    // mark column
-                    for (int k = 0; k < m; k++) {
-                        if (matrix[k][j] != 0) matrix[k][j] = -1;
-                    }
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        int[][] matrix = {
+            {1, 1, 1},
+            {1, 0, 1},
+            {1, 1, 1}
+        };
+        
+    }
+    
+    public static void setzeroes(int[][] matrix){
+        int m = matrix.length ,n=matrix[0].length;
+        for(int i = ;i<m;i++){
+            for(int j = 0;j<m;j++){
+                if(matrix[i][j]==0){
+                    markRow(i);
+                    markCol(j);
                 }
             }
-        }
-
-        // Step 2: convert all -1 to 0
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (matrix[i][j] == -1) matrix[i][j] = 0;
+        }   
+    }
+    
+    static void markCol(i){
+        for(int i=0;i<n;i++){
+            if(matrix[i][j]!=0){
+                matrix[i][j]==-1;
             }
         }
     }
+    
 }
 ```
 
