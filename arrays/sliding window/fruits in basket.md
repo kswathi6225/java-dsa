@@ -112,37 +112,6 @@ print(totalFruit([1,2,1]))  # Output: 3
 
 ---
 
-### Code (Optimal - Python)
-
-```python
-def totalFruit(fruits):
-    from collections import defaultdict
-    
-    left = 0
-    count = defaultdict(int)
-    max_len = 0
-
-    for right in range(len(fruits)):
-        count[fruits[right]] += 1
-
-        while len(count) > 2:   # shrink window
-            count[fruits[left]] -= 1
-            if count[fruits[left]] == 0:
-                del count[fruits[left]]
-            left += 1
-
-        max_len = max(max_len, right - left + 1)
-
-    return max_len
-
-# Example
-print(totalFruit([1,2,1]))      # Output: 3
-print(totalFruit([0,1,2,2]))    # Output: 3
-print(totalFruit([1,2,3,2,2]))  # Output: 4
-```
-
----
-
 ### Code (Optimal - Java)
 
 ```java
