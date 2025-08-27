@@ -115,41 +115,38 @@ print(totalFruit([1,2,1]))  # Output: 3
 ### Code (Optimal - Java)
 
 ```java
-// Sliding Window: O(n)
 import java.util.*;
 
-public class FruitIntoBasket {
+public class Main {
     public static int totalFruit(int[] fruits) {
-        int left = 0, right = 0;
-        int maxLen = 0;
-        Map<Integer, Integer> map = new HashMap<>(); // fruit -> count
+        Map<Integer, Integer> basket = new HashMap<>();
+        int left = 0, maxLen = 0;
 
-        while (right < fruits.length) {
-            // include current fruit
-            map.put(fruits[right], map.getOrDefault(fruits[right], 0) + 1);
+        for (int right = 0; right < fruits.length; right++) {
+            // Add fruit to basket
+            basket.put(fruits[right], basket.getOrDefault(fruits[right], 0) + 1);
 
-            // if more than 2 types, shrink window
-            while (map.size() > 2) {
-                map.put(fruits[left], map.get(fruits[left]) - 1);
-                if (map.get(fruits[left]) == 0) {
-                    map.remove(fruits[left]);
+            // If more than 2 types, shrink window from left
+            while (basket.size() > 2) {
+                basket.put(fruits[left], basket.get(fruits[left]) - 1);
+                if (basket.get(fruits[left]) == 0) {
+                    basket.remove(fruits[left]);
                 }
                 left++;
             }
 
-            // update max window length
+            // Update max length
             maxLen = Math.max(maxLen, right - left + 1);
-
-            right++;
         }
         return maxLen;
     }
 
     public static void main(String[] args) {
         int[] fruits = {1, 2, 1, 2, 3};
-        System.out.println("Max Fruits Collected = " + totalFruit(fruits));
+        System.out.println(totalFruit(fruits)); // Output: 4  (subarray [1,2,1,2])
     }
 }
+
 
 ```
 
