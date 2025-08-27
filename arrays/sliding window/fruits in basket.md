@@ -128,7 +128,7 @@ public class Main {
 
             // If more than 2 types, shrink window from left
             while (basket.size() > 2) {
-                basket.put(fruits[left], basket.get(fruits[left]) - 1);
+                basket.put(fruits[left], basket.get(fruits[left]) - 1);  //updates the map with the new reduced count.
                 if (basket.get(fruits[left]) == 0) {
                     basket.remove(fruits[left]);
                 }
