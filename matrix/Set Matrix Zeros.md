@@ -1,5 +1,4 @@
-Ah! You’re asking about the **“Set Matrix Zeros”** problem (LeetCode 73). Let’s go **step by step**.
-
+ **“Set Matrix Zeros”** problem (LeetCode 73).
 ---
 
 ## 🔹 Problem Statement
@@ -26,6 +25,30 @@ Output:
   [0, 0, 0],
   [1, 0, 1]
 ]
+```
+## Main  method
+```
+public static void main(String[] args) {
+        int[][] matrix = {
+            {1, 1, 1},
+            {1, 0, 1},
+            {1, 1, 1}
+        };
+
+        System.out.println("Original Matrix:");
+        printMatrix(matrix);
+
+        setZeroes(matrix);
+
+        System.out.println("Matrix after setting zeroes:");
+        printMatrix(matrix);
+    }
+
+    static void printMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            System.out.println(Arrays.toString(row));
+        }
+    }
 ```
 
 ---
