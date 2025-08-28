@@ -1,22 +1,16 @@
-Perfect 👍 Let’s write **Markdown + Code (Java + Python)** for all 3 cases you asked:
+# 🟢 Pascal’s Triangle Problems in Java
 
 ---
 
-# 🟢 Pascal’s Triangle Problems
+## 1️⃣ Find element at given Row (R) and Column (C)
 
----
-
-## 1️⃣ Given Row (R) and Column (C), find element at that place
-
-Formula:
+**Formula:**
 
 $$
 \text{Element} = \binom{R-1}{C-1} = \frac{(R-1)!}{(C-1)! \cdot (R-C)!}
 $$
 
-### Example: R=5, C=3 → $\binom{4}{2} = 6$
-
-### **Java**
+### **Java Code**
 
 ```java
 public class PascalsElement {
@@ -30,20 +24,34 @@ public class PascalsElement {
 
     public static void main(String[] args) {
         int R = 5, C = 3;
-        System.out.println("Element at R=" + R + ", C=" + C + " is: " + nCr(R - 1, C - 1));
+        int element = nCr(R - 1, C - 1);
+        System.out.println("Element at Row " + R + ", Col " + C + " = " + element);
     }
 }
 ```
 
-✅ Output: `6`
+### **Input**
+
+```
+R = 5, C = 3
+```
+
+### **Output**
+
+```
+Element at Row 5, Col 3 = 6
+```
+
+### **Complexity**
+
+* **Time:** `O(C)` (since we compute nCr iteratively)
+* **Space:** `O(1)`
 
 ---
 
-## 2️⃣ Print any given row of Pascal’s Triangle (n = 5)
+## 2️⃣ Print any given row of Pascal’s Triangle (Row = n)
 
-Row 5 → `[1, 4, 6, 4, 1]`
-
-### **Java**
+### **Java Code**
 
 ```java
 public class PascalsRow {
@@ -62,20 +70,38 @@ public class PascalsRow {
     }
 }
 ```
-``
 
-✅ Output: `1 4 6 4 1`
+### **Input**
+
+```
+n = 5
+```
+
+### **Output**
+
+```
+Row 5: 1 4 6 4 1
+```
+
+### **Complexity**
+
+* **Time:** `O(n)` (each element of the row is computed once)
+* **Space:** `O(1)`
 
 ---
 
 ## 3️⃣ Print Complete Pascal’s Triangle (till n rows)
 
-### **Java**
+### **Java Code**
 
 ```java
 public class PascalsTriangle {
     static void printTriangle(int n) {
         for (int i = 0; i < n; i++) {
+            // spaces for triangle structure
+            for (int s = 0; s < n - i; s++) {
+                System.out.print(" ");
+            }
             int num = 1;
             for (int j = 0; j <= i; j++) {
                 System.out.print(num + " ");
@@ -92,16 +118,27 @@ public class PascalsTriangle {
 }
 ```
 
-✅ Output (for n=5):
+### **Input**
 
 ```
-1 
-1 1 
-1 2 1 
-1 3 3 1 
-1 4 6 4 1
+n = 5
 ```
+
+### **Output**
+
+```
+     1 
+    1 1 
+   1 2 1 
+  1 3 3 1 
+ 1 4 6 4 1 
+```
+
+### **Complexity**
+
+* **Time:** `O(n²)` (we print all elements of the triangle)
+* **Space:** `O(1)` (no extra storage used)
 
 ---
 
-👉 Do you want me to also give you the **optimized DP approach (using lists/arrays)** for generating Pascal’s triangle (used in interview problems like "Leetcode Pascal’s Triangle")?
+👉 Do you also want me to extend this to **storing Pascal’s triangle in a 2D `ArrayList` (like in Leetcode “Pascal’s Triangle I & II”)** so you can reuse rows later, not just print them?
