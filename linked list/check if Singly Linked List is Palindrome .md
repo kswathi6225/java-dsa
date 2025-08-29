@@ -1,35 +1,83 @@
-## ✅ Code: Check if Singly Linked List is Palindrome (Java)
+Got it 👍 Let’s write **Palindrome Check in a Linked List**.
+I’ll give you **different approaches**, their **Java code**, **time & space complexity**, and **example input/output** in **Markdown format**.
+
+---
+
+# Palindrome Check in Linked List
+
+## Approach 1: Using Extra Space (Stack / ArrayList)
+
+* Store all node values in a list/stack.
+* Compare front and back values.
+
+### Code
 
 ```java
-// Palindrome Check in Singly Linked List
-class PalindromeSLL {
+import java.util.*;
+
+public class PalindromeLL {
     static class Node {
         int data;
         Node next;
-        Node(int d) {
-            data = d;
-            next = null;
-        }
+        Node(int data) { this.data = data; }
     }
 
-    Node head;
-
-    // Insert at end
-    void insert(int data) {
-        Node newNode = new Node(data);
-        if (head == null) {
-            head = newNode;
-            return;
-        }
+    // Check palindrome using extra space
+    public static boolean isPalindrome(Node head) {
+        ArrayList<Integer> list = new ArrayList<>();
         Node temp = head;
-        while (temp.next != null) {
+        while (temp != null) {
+            list.add(temp.data);
             temp = temp.next;
         }
-        temp.next = newNode;
+        int left = 0, right = list.size() - 1;
+        while (left < right) {
+            if (!list.get(left).equals(list.get(right))) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
     }
 
-    // Reverse linked list
-    Node reverse(Node head) {
+    public static void main(String[] args) {
+        Node head = new Node(1);
+        head.next = new Node(2);
+        head.next.next = new Node(2);
+        head.next.next.next = new Node(1);
+
+        System.out.println(isPalindrome(head)); // true
+    }
+}
+```
+
+### Complexity
+
+* **Time:** O(n)
+* **Space:** O(n) (extra array/stack storage)
+
+---
+
+## Approach 2: Reverse Second Half
+
+* Find middle of LL (slow & fast pointer).
+* Reverse second half.
+* Compare first half & reversed half.
+* Restore if needed.
+
+### Code
+
+```java
+public class PalindromeLL2 {
+    static class Node {
+        int data;
+        Node next;
+        Node(int data) { this.data = data; }
+    }
+
+    // Reverse helper
+    private static Node reverse(Node head) {
         Node prev = null, curr = head, next = null;
         while (curr != null) {
             next = curr.next;
@@ -41,101 +89,57 @@ class PalindromeSLL {
     }
 
     // Check palindrome
-    boolean isPalindrome() {
+    public static boolean isPalindrome(Node head) {
         if (head == null || head.next == null) return true;
 
-        // Step 1: Find middle using slow & fast pointer
+        // Find middle (slow will stop at mid)
         Node slow = head, fast = head;
-        while (fast.next != null && fast.next.next != null) {
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
 
-        // Step 2: Reverse second half
-        slow.next = reverse(slow.next);
+        // Reverse second half
+        Node secondHalf = reverse(slow);
+        Node copySecond = secondHalf; // keep to restore later
 
-        // Step 3: Compare first and second half
-        Node p1 = head, p2 = slow.next;
-        while (p2 != null) {
-            if (p1.data != p2.data) return false;
-            p1 = p1.next;
-            p2 = p2.next;
+        // Compare halves
+        Node firstHalf = head;
+        while (secondHalf != null) {
+            if (firstHalf.data != secondHalf.data) {
+                return false;
+            }
+            firstHalf = firstHalf.next;
+            secondHalf = secondHalf.next;
         }
+
+        // Optional: Restore list (reverse again)
+        reverse(copySecond);
 
         return true;
     }
 
-    // Print list
-    void printList() {
-        Node temp = head;
-        while (temp != null) {
-            System.out.print(temp.data + " ");
-            temp = temp.next;
-        }
-        System.out.println();
-    }
-
     public static void main(String[] args) {
-        PalindromeSLL list = new PalindromeSLL();
-        list.insert(1);
-        list.insert(2);
-        list.insert(3);
-        list.insert(2);
-        list.insert(1);
+        Node head = new Node(1);
+        head.next = new Node(2);
+        head.next.next = new Node(2);
+        head.next.next.next = new Node(1);
 
-        System.out.print("Linked List: ");
-        list.printList();
-
-        if (list.isPalindrome())
-            System.out.println("Palindrome ✅");
-        else
-            System.out.println("Not Palindrome ❌");
+        System.out.println(isPalindrome(head)); // true
     }
 }
 ```
 
----
+### Complexity
 
-## 📌 Input & Output
-
-### Input
-
-```
-1 -> 2 -> 3 -> 2 -> 1
-```
-
-### Output
-
-```
-Linked List: 1 2 3 2 1 
-Palindrome ✅
-```
-
-### Another Input
-
-```
-1 -> 2 -> 3 -> 4
-```
-
-### Output
-
-```
-Linked List: 1 2 3 4
-Not Palindrome ❌
-```
+* **Time:** O(n)
+* **Space:** O(1) (no extra array used)
 
 ---
 
-## ⏱️ Time & Space Complexity
 
-* **Time Complexity**: `O(n)`
-
-  * Finding middle → `O(n/2)`
-  * Reversing half → `O(n/2)`
-  * Comparing halves → `O(n/2)`
-  * ✅ Overall: `O(n)`
-* **Space Complexity**: `O(1)` (in-place reversal, no extra space)
+✅ Best Approach for Interviews: **Approach 2 (Reverse Second Half)** since it’s **O(n) time & O(1) space**.
 
 ---
 
-👉 Do you also want me to give the **brute force approach (using stack or array)** for palindrome in SLL, so you can compare?
+Do you want me to also add a **dry run example diagram** (step by step) for the reverse-second-half method? That will help in interviews.
