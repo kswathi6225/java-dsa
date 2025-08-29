@@ -1,8 +1,4 @@
-Sure! Here's the **Linked List deletion code with all types** along with **time & space complexity**, and **input/output examples** in Markdown format.
 
----
-
-````markdown
 # Linked List Deletion Operations in Java
 
 ```java
