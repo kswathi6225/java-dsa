@@ -1,3 +1,7 @@
+https://www.geeksforgeeks.org/dsa/nth-node-from-the-end-of-a-linked-list/
+refer this too i is to return the nth node only 
+----
+
 ## 📝 Problem Statement
 
 Remove the **N-th node from the end** of a singly linked list.
@@ -13,17 +17,84 @@ Output: 1 -> 2 -> 3 -> 5
 
 ---
 
-## 💡 Approach
+## 💡 Approaches
 
-We use **two-pointer technique (fast and slow)**:
+### 1️⃣ Brute Force
 
-1. Move `fast` pointer `n` steps ahead.
-2. Move both `slow` and `fast` until `fast.next == null`.
-3. `slow.next` is the node to remove. Update `slow.next = slow.next.next`.
+1. Traverse the linked list to calculate its **length** `len`.
+2. Calculate the **position from the start**: `pos = len - n`.
+3. Traverse again to the `(pos-1)`-th node and update its `next` pointer to skip the N-th node from the end.
+
+**Time Complexity:** O(2n) → two traversals
+**Space Complexity:** O(1) → in-place
+
+```java
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int val) { this.val = val; }
+}
+
+public class RemoveNthFromEndBrute {
+
+    public static ListNode removeNthFromEnd(ListNode head, int n) {
+        int len = 0;
+        ListNode temp = head;
+        while (temp != null) {
+            len++;
+            temp = temp.next;
+        }
+
+        // If we need to remove the head
+        if (n == len) {
+            return head.next;
+        }
+
+        temp = head;
+        for (int i = 1; i < len - n; i++) {
+            temp = temp.next;
+        }
+        temp.next = temp.next.next;
+        return head;
+    }
+
+    public static void printList(ListNode head) {
+        while (head != null) {
+            System.out.print(head.val + " ");
+            head = head.next;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        head.next.next.next = new ListNode(4);
+        head.next.next.next.next = new ListNode(5);
+
+        System.out.print("Original List: ");
+        printList(head);
+
+        head = removeNthFromEnd(head, 2);
+
+        System.out.print("After Removing 2nd Node from End (Brute): ");
+        printList(head);
+    }
+}
+```
 
 ---
 
-## ✅ Code (Java)
+### 2️⃣ Optimized Approach: Two Pointers (Fast & Slow)
+
+1. Use a **dummy node** pointing to head to handle edge cases (like removing the first node).
+2. Move the `fast` pointer `n + 1` steps ahead.
+3. Move `slow` and `fast` together until `fast` reaches the end.
+4. `slow.next` is the node to remove; skip it by `slow.next = slow.next.next`.
+
+**Time Complexity:** O(n) → single traversal
+**Space Complexity:** O(1) → in-place
 
 ```java
 class ListNode {
@@ -35,7 +106,6 @@ class ListNode {
 public class RemoveNthFromEnd {
 
     public static ListNode removeNthFromEnd(ListNode head, int n) {
-        // Dummy node to handle edge case: removing head
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode slow = dummy;
@@ -58,7 +128,6 @@ public class RemoveNthFromEnd {
         return dummy.next;
     }
 
-    // Helper to print list
     public static void printList(ListNode head) {
         while (head != null) {
             System.out.print(head.val + " ");
@@ -79,7 +148,7 @@ public class RemoveNthFromEnd {
 
         head = removeNthFromEnd(head, 2);
 
-        System.out.print("After Removing 2nd Node from End: ");
+        System.out.print("After Removing 2nd Node from End (Two Pointers): ");
         printList(head);
     }
 }
@@ -87,11 +156,22 @@ public class RemoveNthFromEnd {
 
 ---
 
-## 📊 Complexity
+## 📊 Dry Run Table (Two Pointers)
 
-* **Time:** O(n) → traverse the list once
-* **Space:** O(1) → in-place, no extra space
+| Step | `slow` | `fast` | Action                                             |
+| ---- | ------ | ------ | -------------------------------------------------- |
+| 0    | dummy  | dummy  | Initialize dummy node before head                  |
+| 1    | dummy  | 1      | Move fast 1 step (i=0)                             |
+| 2    | dummy  | 2      | Move fast 2 steps (i=1)                            |
+| 3    | dummy  | 3      | Move fast 3 steps (i=2)                            |
+| 4    | dummy  | 4      | Move fast 4 steps (i=3)                            |
+| 5    | dummy  | 5      | Move fast 5 steps (i=4)                            |
+| 6    | dummy  | null   | Move fast 6 steps (i=5), end reached               |
+| 7    | 3      | null   | Move slow & fast together until fast null          |
+| 8    | 3      | null   | Skip node: slow\.next = slow\.next.next → remove 4 |
+
+**Resulting List:** `1 -> 2 -> 3 -> 5`
 
 ---
 
-Do you want me to also **draw a dry run table** like we did for the intersection and rotation? It helps to understand the two-pointer technique visually.
+
