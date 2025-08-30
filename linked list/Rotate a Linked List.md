@@ -1,5 +1,7 @@
 # Rotate Linked List
-
+--
+## Explanation if u want is at last
+--
 ## Node Definition
 ```java
 class Node {
@@ -79,7 +81,7 @@ class LinkedList {
 
         // move to (leftRotate)th node
         curr = head;
-        for (int i = 1; i < leftRotate; i++) curr = curr.next;
+        for (int i = 1; i < leftRotate; i++) curr = curr.next;  //only difference b/w both is len-k
 
         // new head
         head = curr.next;
@@ -155,9 +157,122 @@ public static void main(String[] args) {
 
 ```
 
+
+```
+
+Perfect! Let’s do a **complete, detailed dry run** of your `rotateLeft` function **step by step** for the input:
+
+**Input:** `10 -> 20 -> 30 -> 40`, `k = 2`
+
 ---
 
-If you want, I can also **draw a step-by-step dry run table for both left and right rotation** so it’s crystal clear how nodes move.  
+### **Step 0: Initial setup**
 
-Do you want me to do that next?
+```java
+Node curr = head;   // curr points to 10
+int len = 1;        // length counter starts at 1
 ```
+
+* `head` points to `10 -> 20 -> 30 -> 40`
+* `curr` is also at `10`
+* `len = 1`
+
+---
+
+### **Step 1: Calculate length of list**
+
+```java
+while (curr.next != null) {
+    curr = curr.next;
+    len++;
+}
+```
+
+| Iteration | curr.data | len |
+| --------- | --------- | --- |
+| 1         | 20        | 2   |
+| 2         | 30        | 3   |
+| 3         | 40        | 4   |
+
+* Loop ends because `curr.next == null`
+* **Length = 4**, `curr` points to `40` (last node)
+
+---
+
+### **Step 2: Adjust k**
+
+```java
+k %= len;  // k = 2 % 4 = 2
+if (k == 0) return head;
+```
+
+* `k = 2`
+* Not 0, so we continue
+
+---
+
+### **Step 3: Make list circular**
+
+```java
+curr.next = head;  // 40 -> 10
+```
+
+* Current list visually (circular now):
+
+```
+10 -> 20 -> 30 -> 40
+^                   |
+|___________________|
+```
+
+* `curr` still points to `40`
+
+---
+
+### **Step 4: Move to k-th node**
+
+```java
+curr = head;
+for (int i = 1; i < k; i++) curr = curr.next;
+```
+
+| i | curr.data |                                                            |
+| - | --------- | ---------------------------------------------------------- |
+| 1 | 10        |                                                            |
+| 2 | 20        | ✅ stop, now curr points to 2nd node (node before new head) |
+
+---
+
+### **Step 5: Update head**
+
+```java
+head = curr.next; // head = 30
+```
+
+* `head` now points to `30 -> 40 -> 10 -> 20 -> ... (circular for now)`
+
+---
+
+### **Step 6: Break the loop**
+
+```java
+curr.next = null; // 20.next = null
+```
+
+* Circular link is broken
+* Final rotated list:
+
+```
+30 -> 40 -> 10 -> 20 -> null
+```
+
+---
+
+### ✅ **Step 7: Return**
+
+* Function returns `head` pointing to `30`
+* Output: `30 -> 40 -> 10 -> 20`
+
+---
+
+
