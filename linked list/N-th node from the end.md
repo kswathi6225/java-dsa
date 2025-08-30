@@ -115,7 +115,7 @@ public class RemoveNthFromEnd {
         for (int i = 0; i <= n; i++) {
             fast = fast.next;
         }
-
+        if(fast== null) return head.next; //EDGE CASE: the first node should be deleted
         // Move slow and fast together
         while (fast != null) {
             slow = slow.next;
