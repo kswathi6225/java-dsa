@@ -6,7 +6,14 @@ Here’s the **Java code with input, output, time & space complexity** in Markdo
 ---
 
 ## 📌 Sort a Linked List (Merge Sort)
+🔹 Why Merge Sort for Linked List?
+        QuickSort / HeapSort need random access to elements (like arr[i]), which Linked Lists don’t support efficiently. Accessing the middle in LL = O(n).
+Merge Sort, on the other hand:
+    Works well with sequential access (like traversing with .next).
+    Splitting (finding mid) = O(n), merging = O(n).
+    So overall complexity = O(n log n).
 
+That’s why we use Merge Sort for Linked Lists.
 ```java
 class LinkedList {
     Node head;
