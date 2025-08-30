@@ -1,108 +1,163 @@
+# Rotate Linked List
 
-**Rotate a Linked List** is one of the *very common* interview questions. Let’s go step by step.
-
----
-
-## 📝 Problem Statement
-
-Rotate a linked list to the right by `k` places.
-
-### Example
-
-```
-Input: 1 -> 2 -> 3 -> 4 -> 5, k = 2  
-Output: 4 -> 5 -> 1 -> 2 -> 3
-```
+## Node Definition
+```java
+class Node {
+    int data;
+    Node next;
+    Node(int data) { this.data = data; }
+}
+````
 
 ---
 
-## 💡 Key Idea
-
-1. Find length of list.
-2. Connect the last node to head (make it circular).
-3. Move `(len - k % len)` steps to find new head.
-4. Break the circle.
-
----
-
-## ✅ Code (Java)
+## Left Rotation by `k` nodes
 
 ```java
-class ListNode {
-    int val;
-    ListNode next;
-    ListNode(int val) {
-        this.val = val;
-        this.next = null;
-    }
-}
+class LinkedList {
 
-public class RotateList {
-    public static ListNode rotateRight(ListNode head, int k) {
-        if (head == null || head.next == null || k == 0) return head;
+    static Node rotateLeft(Node head, int k) {
+        if (head == null || k == 0) return head;
 
-        // Step 1: Find length and tail
-        ListNode curr = head;
+        Node curr = head;
         int len = 1;
+
+        // find the length of linked list
         while (curr.next != null) {
             curr = curr.next;
             len++;
         }
-        ListNode tail = curr;
 
-        // Step 2: Make it circular
-        tail.next = head;
+        k %= len;
+        if (k == 0) return head;
 
-        // Step 3: Find new head position
-        k = k % len;
-        int stepsToNewHead = len - k;
-        ListNode newTail = tail;
+        // make circular
+        curr.next = head;
 
-        while (stepsToNewHead-- > 0) {
-            newTail = newTail.next;
-        }
+        // move to kth node
+        curr = head;
+        for (int i = 1; i < k; i++) curr = curr.next;
 
-        // Step 4: Break the circle
-        ListNode newHead = newTail.next;
-        newTail.next = null;
+        // new head is (k+1)th node
+        head = curr.next;
 
-        return newHead;
-    }
+        // break the loop
+        curr.next = null;
 
-    // Helper to print list
-    public static void printList(ListNode head) {
-        while (head != null) {
-            System.out.print(head.val + " ");
-            head = head.next;
-        }
-        System.out.println();
-    }
-
-    public static void main(String[] args) {
-        // Example: 1->2->3->4->5, k=2
-        ListNode head = new ListNode(1);
-        head.next = new ListNode(2);
-        head.next.next = new ListNode(3);
-        head.next.next.next = new ListNode(4);
-        head.next.next.next.next = new ListNode(5);
-
-        System.out.print("Original List: ");
-        printList(head);
-
-        head = rotateRight(head, 2);
-
-        System.out.print("Rotated List: ");
-        printList(head);
+        return head;
     }
 }
 ```
 
 ---
 
-## 📊 Complexity
+## Right Rotation by `k` nodes
 
-* **Time:** O(n) (one pass for length + one pass for rotation)
-* **Space:** O(1) (in-place)
+```java
+class LinkedList {
+
+    static Node rotateRight(Node head, int k) {
+        if (head == null || k == 0) return head;
+
+        Node curr = head;
+        int len = 1;
+
+        // find length
+        while (curr.next != null) {
+            curr = curr.next;
+            len++;
+        }
+
+        // right rotation is same as left rotation by (len - k)
+        k = k % len;
+        if (k == 0) return head;
+
+        int leftRotate = len - k;
+
+        // make circular
+        curr.next = head;
+
+        // move to (leftRotate)th node
+        curr = head;
+        for (int i = 1; i < leftRotate; i++) curr = curr.next;
+
+        // new head
+        head = curr.next;
+        curr.next = null;
+
+        return head;
+    }
+}
+```
 
 ---
 
+## Print Function
+
+```java
+static void printList(Node head) {
+    Node temp = head;
+    while (temp != null) {
+        System.out.print(temp.data);
+        if(temp.next != null) System.out.print(" -> ");
+        temp = temp.next;
+    }
+    System.out.println();
+}
+```
+
+---
+
+## Input & Output Example
+
+```java
+public static void main(String[] args) {
+    Node head = new Node(10);
+    head.next = new Node(20);
+    head.next.next = new Node(30);
+    head.next.next.next = new Node(40);
+
+    // Left rotation by 2
+    head = rotateLeft(head, 2);
+    printList(head); // Output: 30 -> 40 -> 10 -> 20
+
+    // Reset list
+    head = new Node(10);
+    head.next = new Node(20);
+    head.next.next = new Node(30);
+    head.next.next.next = new Node(40);
+
+    // Right rotation by 1
+    head = rotateRight(head, 1);
+    printList(head); // Output: 40 -> 10 -> 20 -> 30
+}
+```
+
+---
+
+## Time Complexity
+
+* Finding length: O(n)
+* Moving to rotation point: O(n)
+* Overall: **O(n)**
+
+## Space Complexity
+
+* Only pointer variables used: **O(1)**
+
+---
+
+## Notes / Changes
+
+1. Right rotation is equivalent to **left rotation by `(len - k)`** nodes.
+2. Circular link trick (`curr.next = head`) simplifies both left and right rotations.
+3. Handles cases where `k > length` using modulo (`k %= len`).
+
+```
+
+---
+
+If you want, I can also **draw a step-by-step dry run table for both left and right rotation** so it’s crystal clear how nodes move.  
+
+Do you want me to do that next?
+```
