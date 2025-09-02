@@ -10,6 +10,21 @@ Array = `[1, 2, 4, 4, 5, 7]`
 * `lower_bound(4)` → index **2** (first `4`)
 * `upper_bound(4)` → index **4** (first element greater than `4`, i.e. `5`)
 
+✅ Example
+
+Array:
+
+arr = [1, 2, 4, 4, 4, 6, 8]
+
+
+lower_bound(4) → index 2 (first 4).
+
+upper_bound(4) → index 5 (element 6, just after the last 4).
+
+So,
+
+If you want to count occurrences of x → UB - LB.
+Example: count(4) = 5 - 2 = 3.
 ---
 
 ## ✅ Code in Java
