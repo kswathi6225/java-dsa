@@ -69,7 +69,7 @@ class Solution {
 ```
 
 ---
-
+GO DOWN THERE IS ONE MORE METHOD
 ### 3. **Recursive Binary Search** (less common but interviewers may ask)
 
 ```java
@@ -91,6 +91,48 @@ class Solution {
     }
 }
 ```
+
+---
+
+### 🔹 With Duplicates
+
+If duplicates exist, binary search can get stuck.
+So:
+
+* When `nums[mid] == nums[right]`, we **can’t decide**, so just do `right--`.
+
+---
+
+### 🔹 Java Code (With Duplicates)
+
+```java
+public class Main {
+    public static int findMin(int[] nums) {
+        int left = 0, right = nums.length - 1;
+
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+
+            if (nums[mid] > nums[right]) {
+                left = mid + 1;
+            } else if (nums[mid] < nums[right]) {
+                right = mid;
+            } else {
+                // nums[mid] == nums[right], can't decide, shrink
+                right--;
+            }
+        }
+        return nums[left];
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {2,2,2,0,1};
+        System.out.println(findMin(arr)); // 0
+    }
+}
+```
+
+⏱ **Time Complexity**: O(log n) on average, but **O(n) worst case** (all duplicates).
 
 ---
 
