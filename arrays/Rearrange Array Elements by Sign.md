@@ -13,6 +13,95 @@ Output: [-4, 1, -1, 2, 3, 4]  (alternating neg/pos)
 ```
 
 ---
+Got it 👍 You want a **simpler version** using **two extra arrays**: one for positives and one for negatives.
+This keeps things very clear and easy to understand.
+
+---
+
+## ✅ Code: Rearrange Alternately Using Two Arrays
+
+```java
+import java.util.*;
+
+public class RearrangeAlternately {
+    public static void rearrange(int[] arr) {
+        int n = arr.length;
+
+        // Step 1: Separate positives and negatives
+        List<Integer> pos = new ArrayList<>();
+        List<Integer> neg = new ArrayList<>();
+
+        for (int num : arr) {
+            if (num >= 0) {
+                pos.add(num);
+            } else {
+                neg.add(num);
+            }
+        }
+
+        // Step 2: Merge alternately
+        int i = 0, p = 0, q = 0;
+
+        // alternate placement
+        while (p < pos.size() && q < neg.size()) {
+            arr[i++] = pos.get(p++);  // place positive
+            arr[i++] = neg.get(q++);  // place negative
+        }
+
+        // Step 3: Add remaining positives
+        while (p < pos.size()) {
+            arr[i++] = pos.get(p++);
+        }
+
+        // Step 4: Add remaining negatives
+        while (q < neg.size()) {
+            arr[i++] = neg.get(q++);
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, -4, -1, 4, -6, -7};
+        rearrange(arr);
+        System.out.println(Arrays.toString(arr));
+    }
+}
+```
+
+---
+
+## ✅ Example Dry Run
+
+Input:
+
+```
+arr = [1, 2, 3, -4, -1, 4, -6, -7]
+```
+
+1. Separate into two lists:
+
+```
+pos = [1, 2, 3, 4]
+neg = [-4, -1, -6, -7]
+```
+
+2. Merge alternately:
+
+```
+arr = [1, -4, 2, -1, 3, -6, 4, -7]
+```
+
+---
+
+## ✅ Complexity
+
+* **Time Complexity:**
+
+  * O(n) → One pass to split + one pass to merge
+* **Space Complexity:**
+
+  * O(n) → Two extra lists for positives and negatives
+
+---
 
 ## **Optimized Approach (O(n) time, O(1) space)**
 
