@@ -1,9 +1,7 @@
-Perfect 👍 Let’s write Java code to **find duplicates in an array**.
-✅ 2. Find Duplicate Element (if any)
-
+## find duplicates in an array
 👉 Best way: Floyd’s Cycle Detection (Tortoise & Hare) (no extra space).
 Works if numbers are in 1..n with at least one duplicate.
-
+```java
 public class FindDuplicate {
     public static void main(String[] args) {
         int[] arr = {1, 3, 4, 2, 2};
@@ -28,7 +26,7 @@ public class FindDuplicate {
     }
 }
 
-
+```
 🔹 Time Complexity: O(n)
 🔹 Space Complexity: O(1)
 
