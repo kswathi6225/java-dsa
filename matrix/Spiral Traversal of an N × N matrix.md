@@ -116,4 +116,110 @@ public class SpiralMatrix {
 
 ---
 
+Ah, I see what you mean 👍
+You’re asking about **input format**:
+
+```
+3 3
+1 2 3
+4 5 6
+7 8 9
+```
+
+Here, the first line `3 3` means:
+
+* **3 rows**
+* **3 columns**
+
+I didn’t ignore it 🙂 — in my earlier code, I hardcoded the matrix. But if we want to **take input dynamically**, we should use those `3 3` values to build the matrix.
+
+---
+
+### ✅ Java Code (Take Input with n, m)
+
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Read dimensions
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+
+        // Read matrix
+        int[][] matrix = new int[n][m];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                matrix[i][j] = sc.nextInt();
+            }
+        }
+
+        // Print in spiral order
+        printSpiral(matrix, n, m);
+    }
+
+    public static void printSpiral(int[][] matrix, int n, int m) {
+        int top = 0, bottom = n - 1;
+        int left = 0, right = m - 1;
+
+        while (top <= bottom && left <= right) {
+            // left → right
+            for (int i = left; i <= right; i++) {
+                System.out.print(matrix[top][i]);
+            }
+            top++;
+
+            // top → bottom
+            for (int i = top; i <= bottom; i++) {
+                System.out.print(matrix[i][right]);
+            }
+            right--;
+
+            // right → left
+            if (top <= bottom) {
+                for (int i = right; i >= left; i--) {
+                    System.out.print(matrix[bottom][i]);
+                }
+                bottom--;
+            }
+
+            // bottom → top
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--) {
+                    System.out.print(matrix[i][left]);
+                }
+                left++;
+            }
+        }
+    }
+}
+```
+
+---
+
+### ✅ Example Run
+
+**Input:**
+
+```
+3 3
+1 2 3
+4 5 6
+7 8 9
+```
+
+**Output:**
+
+```
+123698745
+```
+
+---
+
+👉 So, I wasn’t ignoring `3 3`; I just assumed static input earlier.
+Would you like me to also make this **work for non-square matrices** (e.g., `3 4`, `2 5` etc.)?
+
+
 Would you like me to also show you the **version that prints directly (without using extra list)** to save space?
