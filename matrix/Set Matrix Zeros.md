@@ -27,7 +27,7 @@ Output:
 ]
 ```
 ## Main  method
-```
+```java
 public static void main(String[] args) {
         int[][] matrix = {
             {1, 1, 1},
