@@ -124,33 +124,43 @@ class GfG {
 This is the best way to solve it when the majority element is guaranteed to exist.
 
 ```java
-public class MajorityElementOptimal {
-    public static void main(String[] args) {
-        int[] nums = {3, 3, 4, 2, 3, 3, 5};
-        int count = 0;
-        int candidate = 0;
+import java.util.*;
+
+public class Main {
+    public static int majorityElement(int[] nums) {
+        int n = nums.length;
+        int freq = 0, ans = 0;
 
         // Phase 1: Find a candidate
         for (int num : nums) {
-            if (count == 0) {
-                candidate = num;
+            if (freq == 0) {
+                ans = num;
             }
-            count += (num == candidate) ? 1 : -1;
+            if (ans == num) {
+                freq++;
+            } else {
+                freq--;
+            }
         }
 
         // Phase 2: Verify the candidate
-        count = 0;
+        int count = 0;
         for (int num : nums) {
-            if (num == candidate) count++;
+            if (num == ans) {
+                count++;
+            }
         }
 
-        if (count > nums.length / 2) {
-            System.out.println("Majority Element: " + candidate);
-        } else {
-            System.out.println("No Majority Element");
-        }
+        return (count > n / 2) ? ans : -1; // No majority element
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {2, 2, 1, 2, 3};  // 📥 Input
+        int ans = majorityElement(nums);
+        System.out.println("Majority element is: " + ans);  // 📤 Output
     }
 }
+
 ```
 
 **Time Complexity:** O(n)
